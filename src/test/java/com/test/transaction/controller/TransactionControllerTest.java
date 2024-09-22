@@ -63,7 +63,7 @@ public class TransactionControllerTest {
         when(transactionService.createTransaction(any(TransactionRequestDTO.class))).thenReturn(transaction);
 
         // Act & Assert
-        mockMvc.perform(post("/transactions/create")
+        mockMvc.perform(post("/transactions")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(transactionDTO)))
                 .andExpect(status().isCreated())
@@ -79,7 +79,7 @@ public class TransactionControllerTest {
         TransactionRequestDTO invalidDTO = new TransactionRequestDTO(); // Missing required fields
 
         // Act & Assert
-        mockMvc.perform(post("/transactions/create")
+        mockMvc.perform(post("/transactions")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(invalidDTO)))
                 .andExpect(status().isBadRequest());

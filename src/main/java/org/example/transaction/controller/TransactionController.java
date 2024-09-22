@@ -29,7 +29,7 @@ public class TransactionController {
             @ApiResponse(responseCode = "201", description = "Transaction created",content = @Content(mediaType = "application/json", schema = @Schema(implementation = Transaction.class))),
             @ApiResponse(responseCode = "400", description = "Invalid input")
     })
-    @PostMapping("/create")
+    @PostMapping
     public ResponseEntity<Transaction> createTransaction(@RequestBody @io.swagger.v3.oas.annotations.parameters.RequestBody(description = "Details of the transaction to create")TransactionRequestDTO transactionDTO) {
         Transaction transaction = transactionService.createTransaction(transactionDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(transaction);
