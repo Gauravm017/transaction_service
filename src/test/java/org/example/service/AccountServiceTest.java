@@ -1,4 +1,4 @@
-package com.test.transaction.service;
+package org.example.service;
 
 import org.example.transaction.dto.AccountRequestDTO;
 import org.example.transaction.exception.AccountNotFoundException;
@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.test.context.ActiveProfiles;
 
 import java.util.Optional;
 
@@ -19,6 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
+@ActiveProfiles("test")
 public class AccountServiceTest {
 
     @InjectMocks

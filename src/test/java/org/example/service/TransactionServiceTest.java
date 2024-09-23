@@ -1,4 +1,4 @@
-package com.test.transaction.service;
+package org.example.service;
 
 import org.example.transaction.dto.TransactionRequestDTO;
 import org.example.transaction.exception.CreateTransactionException;
@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.test.context.ActiveProfiles;
 
 import java.util.Optional;
 
@@ -23,6 +24,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
+@ActiveProfiles("test")
 public class TransactionServiceTest {
 
     @InjectMocks
@@ -51,34 +53,34 @@ public class TransactionServiceTest {
         account.setAccountId(1L);
 
         OperationType operationType = new OperationType();
-        operationType.setOperationTypeId(4L);
+        operationType.setOperationTypeId(3L);
 
         Transaction transaction = new Transaction();
         transaction.setTransactionId(1L);
         transaction.setAccount(account);
         transaction.setOperationType(operationType);
-        transaction.setAmount(123.45);
+        transaction.setAmount(57.7);
 
         TransactionRequestDTO transactionDTO = new TransactionRequestDTO();
         transactionDTO.setAccountId(1L);
-        transactionDTO.setOperationTypeId(4L);
-        transactionDTO.setAmount(123.45);
+        transactionDTO.setOperationTypeId(3L);
+        transactionDTO.setAmount(57.7);
 
         when(accountRepository.findById(1L)).thenReturn(Optional.of(account));
-        when(operationTypeRepository.findById(4L)).thenReturn(Optional.of(operationType));
+        when(operationTypeRepository.findById(3L)).thenReturn(Optional.of(operationType));
         when(transactionRepository.save(any(Transaction.class))).thenReturn(transaction);
 
         Transaction createdTransaction = transactionService.createTransaction(transactionDTO);
         assertEquals(1L, createdTransaction.getTransactionId());
-        assertEquals(123.45, createdTransaction.getAmount());
+        assertEquals(57.7, createdTransaction.getAmount());
     }
 
     @Test
     public void createTransactionAccountNotFoundTest() {
         TransactionRequestDTO transactionDTO = new TransactionRequestDTO();
         transactionDTO.setAccountId(1L);
-        transactionDTO.setOperationTypeId(4L);
-        transactionDTO.setAmount(123.45);
+        transactionDTO.setOperationTypeId(3L);
+        transactionDTO.setAmount(100.1);
 
         when(accountRepository.findById(1L)).thenReturn(Optional.empty());
 
@@ -92,5 +94,12 @@ public class TransactionServiceTest {
 
         TransactionRequestDTO transactionDTO = new TransactionRequestDTO();
         transactionDTO.setAccountId(1L);
+        transactionDTO.setOperationTypeId(5L);
+        transactionDTO.setAmount(111.0);
+
+        when(accountRepository.findById(1L)).thenReturn(Optional.of(account));
+        when(operationTypeRepository.findById(5L)).thenReturn(Optional.empty());
+
+        assertThrows(CreateTransactionException.class, ()-> transactionService.createTransaction(transactionDTO));
     }
 }
