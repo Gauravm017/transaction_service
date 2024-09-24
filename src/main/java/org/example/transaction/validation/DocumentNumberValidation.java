@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.example.transaction.exception.InvalidDocumentNumberException;
+import org.reactivestreams.Publisher;
 
 @EqualsAndHashCode(callSuper = true)
 @Slf4j
@@ -27,7 +28,7 @@ public class DocumentNumberValidation extends BaseEntityDecorator{
         }
 
          if(StringUtils.isBlank(getCriteria().getValidationExpression())) {
-             getCriteria().setRequired(false);
+             getCriteria().setRequired(true);
              getCriteria().setValidationExpression(DOCUMENT_NUMBER_PATTERN);
          }
          if(!super.validate(docNo)){

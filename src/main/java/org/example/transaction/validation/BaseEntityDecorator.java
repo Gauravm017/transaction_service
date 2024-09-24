@@ -3,6 +3,7 @@ package org.example.transaction.validation;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.reactivestreams.Publisher;
 
 @AllArgsConstructor
 @NoArgsConstructor

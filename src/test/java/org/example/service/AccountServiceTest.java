@@ -5,6 +5,7 @@ import org.example.transaction.exception.AccountNotFoundException;
 import org.example.transaction.model.Account;
 import org.example.transaction.repository.AccountRepository;
 import org.example.transaction.service.AccountService;
+import org.example.transaction.service.AccountServiceImpl;
 import org.example.transaction.validation.AccountRequestValidator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -24,7 +25,7 @@ import static org.mockito.Mockito.when;
 public class AccountServiceTest {
 
     @InjectMocks
-    private AccountService accountService;
+    private AccountServiceImpl accountService;
 
     @Mock
     private AccountRepository accountRepository;

@@ -1,5 +1,6 @@
 package org.example.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.example.TransactionServiceApplication;
 import org.example.transaction.dto.AccountRequestDTO;
@@ -39,6 +40,9 @@ public class AccountControllerTest {
     @MockBean
     private AccountService accountService;
 
+    @Autowired
+    ObjectMapper objectMapper;
+
     @Test
     public void createAccountTest() throws Exception {
         Account account = new Account();
@@ -52,7 +56,7 @@ public class AccountControllerTest {
 
         mockMvc.perform(post("/accounts")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"document_number\": \"12345678900\"}"))
+                        .content(objectMapper.writeValueAsString(accountDTO)))
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.accountId").value(1))
                 .andExpect(jsonPath("$.documentNumber").value("12345678900"));

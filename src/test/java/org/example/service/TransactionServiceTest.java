@@ -1,14 +1,15 @@
 package org.example.service;
 
 import org.example.transaction.dto.TransactionRequestDTO;
-import org.example.transaction.exception.CreateTransactionException;
+import org.example.transaction.exception.AccountNotFoundException;
+import org.example.transaction.exception.InvalidOperationTypeException;
 import org.example.transaction.model.Account;
 import org.example.transaction.model.OperationType;
 import org.example.transaction.model.Transaction;
 import org.example.transaction.repository.AccountRepository;
 import org.example.transaction.repository.OperationTypeRepository;
 import org.example.transaction.repository.TransactionRepository;
-import org.example.transaction.service.TransactionService;
+import org.example.transaction.service.TransactionServiceImpl;
 import org.example.transaction.validation.TransactionRequestValidator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -28,7 +29,7 @@ import static org.mockito.Mockito.when;
 public class TransactionServiceTest {
 
     @InjectMocks
-    private TransactionService transactionService;
+    private TransactionServiceImpl transactionService;
 
     @Mock
     private TransactionRepository transactionRepository;
@@ -84,7 +85,7 @@ public class TransactionServiceTest {
 
         when(accountRepository.findById(1L)).thenReturn(Optional.empty());
 
-        assertThrows(CreateTransactionException.class, () -> transactionService.createTransaction(transactionDTO));
+        assertThrows(AccountNotFoundException.class, () -> transactionService.createTransaction(transactionDTO));
     }
 
     @Test
@@ -100,6 +101,6 @@ public class TransactionServiceTest {
         when(accountRepository.findById(1L)).thenReturn(Optional.of(account));
         when(operationTypeRepository.findById(5L)).thenReturn(Optional.empty());
 
-        assertThrows(CreateTransactionException.class, ()-> transactionService.createTransaction(transactionDTO));
+        assertThrows(InvalidOperationTypeException.class, ()-> transactionService.createTransaction(transactionDTO));
     }
 }

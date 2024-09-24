@@ -5,6 +5,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.example.TransactionServiceApplication;
 import org.example.transaction.controller.TransactionController;
 import org.example.transaction.dto.TransactionRequestDTO;
+import org.example.transaction.model.Account;
+import org.example.transaction.model.OperationType;
 import org.example.transaction.model.Transaction;
 import org.example.transaction.service.TransactionService;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,6 +17,7 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
@@ -27,7 +30,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@SpringBootTest(classes = TransactionServiceApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(classes = TransactionServiceApplication.class)
 @Slf4j
 @AutoConfigureMockMvc
 @ActiveProfiles("local")
@@ -36,19 +39,11 @@ public class TransactionControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-    @Mock
+    @Autowired
     private TransactionService transactionService;
 
-    @InjectMocks
-    private TransactionController transactionController;
-
+    @Autowired
     private ObjectMapper objectMapper;
-
-    @BeforeEach
-    void setUp() {
-        MockitoAnnotations.openMocks(this);
-        objectMapper = new ObjectMapper();
-    }
 
     @Test
     void createTransaction_ShouldReturn201WhenValid() throws Exception {
@@ -58,11 +53,21 @@ public class TransactionControllerTest {
         transactionDTO.setOperationTypeId(4L);
         transactionDTO.setAmount(100.00);
 
+//        Account account = new Account();
+//        account.setAccountId(1L);
+//        account.setDocumentNumber("12345678900");
+//
+//        OperationType operationType = new OperationType();
+//        operationType.setOperationTypeId(4L);
+//        operationType.setDescription("Credit Voucher");
+
         Transaction transaction = new Transaction();
         transaction.setAmount(100.00);
         transaction.setEventDate(LocalDateTime.now());
+//        transaction.setAccount(account);
+//        transaction.setOperationType(operationType);
 
-        when(transactionService.createTransaction(any(TransactionRequestDTO.class))).thenReturn(transaction);
+//        when(transactionService.createTransaction(any(TransactionRequestDTO.class))).thenReturn(transaction);
 
         // Act & Assert
         mockMvc.perform(post("/transactions")

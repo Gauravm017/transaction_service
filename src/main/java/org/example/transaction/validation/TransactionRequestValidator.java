@@ -4,6 +4,7 @@ import org.example.transaction.Utils.FlowType;
 import org.example.transaction.dto.TransactionRequestDTO;
 import org.example.transaction.exception.AccountNotFoundException;
 import org.example.transaction.exception.InvalidOperationTypeException;
+import org.example.transaction.exception.InvalidTransactionAmountException;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -30,7 +31,7 @@ public class TransactionRequestValidator extends BaseValidator {
             throw new InvalidOperationTypeException("INVALID OPERATION TYPE");
         }
         else if(transactionRequestDTO.getAmount() == null){
-            throw new InvalidOperationTypeException("AMOUNT NOT PROVIDED");
+            throw new InvalidTransactionAmountException("AMOUNT NOT PROVIDED");
         }
     }
 }
