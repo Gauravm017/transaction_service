@@ -46,12 +46,8 @@ is pointing to localhost
     MYSQL_URL=localhost
 
 2. Running the Application with Docker 
-    
-Step 1: Build Docker Image
 
-    docker build -t transaction-service .
-
-Step 2: Run the run Script
+Step 1: Run the run Script
 
     ./run.sh
 
