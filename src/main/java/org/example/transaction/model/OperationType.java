@@ -17,4 +17,8 @@ public class OperationType {
 
     @Column(nullable = false)
     private String description;
+
+    @Column(name = "is_credit")
+    private boolean credit;
+
 }

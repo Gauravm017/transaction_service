@@ -33,5 +33,8 @@ public class TransactionRequestValidator extends BaseValidator {
         else if(transactionRequestDTO.getAmount() == null){
             throw new InvalidTransactionAmountException("AMOUNT NOT PROVIDED");
         }
+        else if(transactionRequestDTO.getAmount() <= 0L){
+            throw new InvalidTransactionAmountException("INVALID AMOUNT PROVIDED");
+        }
     }
 }

@@ -46,7 +46,11 @@ public class TransactionServiceImpl implements TransactionService {
             Transaction transaction = new Transaction();
             transaction.setAccount(account);
             transaction.setOperationType(operationType);
-            transaction.setAmount(transactionDTO.getAmount());
+            if(operationType.isCredit()){
+                transaction.setAmount(transactionDTO.getAmount());
+            }else{
+                transaction.setAmount(-transactionDTO.getAmount());
+            }
             transaction.setEventDate(LocalDateTime.now());
 
             return transactionRepository.save(transaction);
