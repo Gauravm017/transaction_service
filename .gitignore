@@ -1,8 +1,16 @@
-# Compiled class file
-*.class
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
 
-# Log file
-*.log
+### IntelliJ IDEA ###
+.idea/modules.xml
+.idea/jarRepositories.xml
+.idea/compiler.xml
+.idea/libraries/
+*.iws
+*.iml
+*.ipr
 
 # BlueJ files
 *.ctxt
@@ -19,7 +27,6 @@
 *.tar.gz
 *.rar
 *.xml
-*.iml
 
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
@@ -32,8 +39,6 @@ replay_pid*
 target/*
 */target/*
 .idea/
-*.ipr
-*.iws
 *.orig
 *.versionsBackup
 docker/ROOT.war
