@@ -18,7 +18,32 @@
 *.zip
 *.tar.gz
 *.rar
+*.xml
+*.iml
+
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 replay_pid*
+
+.classpath
+.project
+.settings/*
+target/*
+*/target/*
+.idea/
+*.ipr
+*.iws
+*.orig
+*.versionsBackup
+docker/ROOT.war
+docker/ROOT.jar
+out/
+tomcat.*/
+dependency-reduced-pom.xml
+docker/.gradle/
+docker/gradle/
+docker/gradlew
+docker/gradlew.bat
+*.gitignore
+*.settings
