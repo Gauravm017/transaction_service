@@ -36,11 +36,14 @@ cd transaction-service
 
 Step 2: Configure the Database
 
-Modify src/main/resources/application.properties to set up your database connection
-spring.datasource.url=jdbc:mysql://localhost:3306/transaction_service
-spring.datasource.username=root
-spring.datasource.password=gaur1010
-spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+    Modify src/main/resources/application-docker.properties to set up your database connection
+    spring.datasource.username=root
+    spring.datasource.password=gaur1010
+
+Mention MySQL Host in run script to connect to remote MySQL where database is hosted currently
+is pointing to localhost
+    
+    MYSQL_URL=localhost
 
 2. Running the Application with Docker 
     
