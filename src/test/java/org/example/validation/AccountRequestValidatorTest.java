@@ -21,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static reactor.core.publisher.Mono.when;
 
-@ActiveProfiles("test")
+@ActiveProfiles("local")
 @SpringBootTest(classes = TransactionServiceApplication.class)
 public class AccountRequestValidatorTest {
 

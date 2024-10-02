@@ -3,6 +3,7 @@ package org.example.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.example.TransactionServiceApplication;
+import org.example.transaction.config.DbConfig;
 import org.example.transaction.dto.AccountRequestDTO;
 import org.example.transaction.model.Account;
 import org.example.transaction.service.AccountService;
