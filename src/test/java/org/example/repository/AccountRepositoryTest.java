@@ -1,11 +1,16 @@
 package org.example.repository;
 
 import lombok.extern.slf4j.Slf4j;
+import org.example.TransactionServiceApplication;
 import org.example.transaction.model.Account;
 import org.example.transaction.repository.AccountRepository;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.autoconfigure.orm.jpa.AutoConfigureDataJpa;
+import org.springframework.boot.test.autoconfigure.orm.jpa.AutoConfigureTestEntityManager;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.assertj.core.api.Assertions;
 import org.springframework.test.context.ActiveProfiles;
@@ -13,6 +18,7 @@ import org.springframework.test.context.ActiveProfiles;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @Slf4j
 @DataJpaTest
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @ActiveProfiles("test")
 public class AccountRepositoryTest {
     @Autowired

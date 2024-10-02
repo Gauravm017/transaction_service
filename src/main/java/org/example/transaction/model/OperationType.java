@@ -7,15 +7,16 @@ import lombok.Data;
 
 @Entity
 @Data
-@Table(name = "OperationType")
+@Table(name = "operation_type")
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class OperationType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "operation_type_id")
     private Long operationTypeId;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "description")
     private String description;
 
     @Column(name = "is_credit")

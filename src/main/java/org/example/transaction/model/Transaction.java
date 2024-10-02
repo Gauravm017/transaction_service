@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Data
-@Table(name = "Transaction")
+@Table(name = "transaction")
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Transaction {
@@ -28,6 +28,6 @@ public class Transaction {
     @Column(nullable = false)
     private Double amount;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "event_date")
     private LocalDateTime eventDate;
 }

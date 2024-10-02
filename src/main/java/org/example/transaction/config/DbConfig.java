@@ -63,7 +63,7 @@ public class DbConfig {
         em.setJpaVendorAdapter(vendorAdapter);
 
         Properties properties = new Properties();
-        //properties.setProperty("hibernate.dialect", hibernateDialect);
+        properties.setProperty("hibernate.dialect", hibernateDialect);
         properties.setProperty("hibernate.show_sql", String.valueOf(showSql));
 
         em.setJpaProperties(properties);

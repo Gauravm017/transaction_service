@@ -13,9 +13,10 @@ import lombok.Data;
 public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "account_id")
     private Long accountId;
 
-    @Column(nullable = false, unique = true)
+    @Column(name = "document_number", nullable = false, unique = true)
     private String documentNumber;
 }
 
